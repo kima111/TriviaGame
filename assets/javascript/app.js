@@ -1,7 +1,6 @@
 
       $(document).ready(function() {
      
-     
       var delayButtonAlert;
       var questAnswers = {
           question1 : {
@@ -20,37 +19,57 @@
           },
           question3 : {
             q1:"What is the color of the sky?",
-            a1:"blue",
-            w2:"red",
-            w3:"green",
-            w4:"apple"
+            a1:"3",
+            w2:"3",
+            w3:"3",
+            w4:"3"
           },
           question4 : {
             q1:"What is the color of the sky?",
-            a1:"blue",
-            w2:"red",
-            w3:"green",
-            w4:"apple"
+            a1:"4",
+            w2:"4",
+            w3:"4",
+            w4:"4"
           },
           question5 : {
             q1:"What is the color of the sky?",
-            a1:"blue",
-            w2:"red",
-            w3:"green",
-            w4:"apple"
+            a1:"5",
+            w2:"5",
+            w3:"5",
+            w4:"5"
           },
       };
       var time = 30;
       var questionNumber = 1;
-      var answerNumber;
-      var clockRunning = false;
-      var currentQuestion;
-      
     
-      // var windowTimeout = setTimeout(function() {
-      //   alert("Alert #1: Called automatically 1 second after page load.");
-      // }, 1000);
+      //event listener is so that it can pick up on the event and not just when the document loads
 
+      document.addEventListener("click", function(event){
+      $("#ansChoice1").on("click", function(){
+        questionNumber ++;
+        resetClock();
+        displayChoices(questionNumber);
+      });
+ 
+      $("#ansChoice2").on("click", function(){
+        questionNumber ++;
+        resetClock();
+        displayChoices();
+      });
+
+      $("#ansChoice3").on("click", function(){
+        questionNumber ++;
+        resetClock();
+        displayChoices();
+      });
+
+      $("#ansChoice4").on("click", function(){
+        questionNumber ++;
+        resetClock();
+        displayChoices();
+      });
+
+    });
       $("#start").on("click", function() {
    
         intervalId = setInterval(count, 1000);
@@ -63,58 +82,18 @@
         console.log(currentQ);
         $("#question").text(questAnswers[currentQ][q]);
         
-      //  for(i=0; i<Object.keys(questAnswers).length; i++){
-      //    console.log(i);
-      //  }
        if (time == 0){
          questionNumber ++;
        }
-        console.log(Object.keys(questAnswers).length);
        displayChoices(questionNumber);
-       
-        $("#ansChoice1").on("click", function(){
-          questionNumber ++;
-          resetClock();
-          removeChoices();
-       
-          displayChoices(questionNumber);
-          console.log("?")
-        });
-        $("#ansChoice2").on("click", function(){
-          questionNumber ++;
-          resetClock();
-          removeChoices();
-          displayChoices(questionNumber);
-        });
-        $("#ansChoice3").on("click", function(){
-          questionNumber ++;
-          resetClock();
-          removeChoices();
-   
-          displayChoices(questionNumber);
-        });
-        $("#ansChoice4").on("click", function(){
-          questionNumber ++;
-          resetClock();
-          removeChoices();
-         
-          displayChoices(questionNumber);
-        });
-        
       });
+
       function resetClock(){
         time = 30;
       }
-      function removeChoices(){
-        $("#ansChoice1").remove();
-        $("#ansChoice2").remove();
-        $("#ansChoice3").remove();
-        $("#ansChoice4").remove();
-
-      }
-      function displayChoices(arr){
+ 
+      function displayChoices(){
       
-
         var questionNum = "question" + questionNumber;
         var answer1 = "a1";
         var answer2 = "w2";
@@ -125,19 +104,20 @@
         var thirdAnswer = questAnswers[questionNum][answer3];
         var fourthAnswer = questAnswers[questionNum][answer4];
 
-        
         var choices = "<button id='ansChoice1'>" + firstAnswer + "</button></br>" +
         "<button id='ansChoice2'>" + secondAnswer + "</button></br>" +
         "<button id='ansChoice3'>" + thirdAnswer + "</button></br>" +
         "<button id='ansChoice4'>" + fourthAnswer + "</button></br>"
         ;
-        $("#choices").append(choices);
+        $("#choices").html(choices);
+
       }
    
       function count(){
         time--;
         var converted = timeConverter(time);
         $("#timer").text(converted);
+      
 
       }
       function timeConverter(t) {
@@ -148,14 +128,12 @@
         if (seconds < 10) {
           seconds = "0" + seconds;
         }
-      
         if (minutes === 0) {
           minutes = "00";
         }
         else if (minutes < 10) {
           minutes = "0" + minutes;
         }
-      
         return minutes + ":" + seconds;
       }
 
