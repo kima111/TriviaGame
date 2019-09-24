@@ -1,6 +1,6 @@
 
       $(document).ready(function() {
-     
+      //a1 is the correct answer
       var questAnswers = {
           question1 : {
             q1:"What is the color of the sky?",
@@ -38,9 +38,10 @@
             a4:"Tacoma"
           },
       };
-      var time = 31;
+      var time = 3;
       var questionNumber = 1;
       var correctAnswers = 0;
+      var clockRunning = false;
       var answer1;
       var answer2;
       var answer3;
@@ -52,10 +53,6 @@
         if(answer1 == "a1"){
           correctAnswers ++;
         }
-        else{
-          console.log("wrong answer");
-        }
-      
         questionNumber ++;
         resetClock();
         displayChoices(questionNumber);
@@ -65,10 +62,6 @@
         if(answer2 == "a1"){
           correctAnswers ++;
         }
-        else{
-          console.log("wrong answer");
-        }
-      
         questionNumber ++;
         resetClock();
         displayChoices();
@@ -78,10 +71,6 @@
         if(answer3 == "a1"){
           correctAnswers ++;
         }
-        else{
-          console.log("wrong answer");
-        }
-      
         questionNumber ++;
         resetClock();
         displayChoices();
@@ -91,10 +80,6 @@
         if(answer4 == "a1"){
           correctAnswers ++;
         }
-        else{
-          console.log("wrong answer");
-        }
-      
         questionNumber ++;
         resetClock();
         displayChoices();
@@ -103,15 +88,17 @@
     });
 
       $("#start").on("click", function() {
+        if(!clockRunning){
         intervalId = setInterval(count, 1000);
         clockRunning = true;
+        }
         $("#start").fadeOut();
         displayChoices();
         
       });
 
       function resetClock(){
-        time = 31;
+        time = 3;
       }
 
       //used to shuffle array
@@ -133,42 +120,55 @@
       };
 
       function displayChoices(){
-        var ansArray = [1,2,3,4];
-        var shuffledAnsArray = shuffle(ansArray);
-        var questionNum = "question" + questionNumber;
-        var currentQuestion = "q1";
+     
+        if(questionNumber !== (Object.keys(questAnswers).length) + 1){
+          var ansArray = [1,2,3,4];
+          var shuffledAnsArray = shuffle(ansArray);
+          var questionNum = "question" + questionNumber;
+          var currentQuestion = "q1";
+      
+          answer1 = "a" + (shuffledAnsArray[0]).toString();
+          answer2 = "a" + (shuffledAnsArray[1]).toString();
+          answer3 = "a" + (shuffledAnsArray[2]).toString();
+          answer4 = "a" + (shuffledAnsArray[3]).toString();
     
-        answer1 = "a" + (shuffledAnsArray[0]).toString();;
-        answer2 = "a" + (shuffledAnsArray[1]).toString();
-        answer3 = "a" + (shuffledAnsArray[2]).toString();
-        answer4 = "a" + (shuffledAnsArray[3]).toString();
+          var currentQuestionText = questAnswers[questionNum][currentQuestion];
+
+          var firstAnswer = questAnswers[questionNum][answer1];
+          var secondAnswer = questAnswers[questionNum][answer2];
+          var thirdAnswer = questAnswers[questionNum][answer3];
+          var fourthAnswer = questAnswers[questionNum][answer4];
+
+          var questionChoices =
+          "<text id ='question'>" + currentQuestionText + "</text></br>" + 
+          "<button id='ansChoice1'>" + firstAnswer + "</button></br>" +
+          "<button id='ansChoice2'>" + secondAnswer + "</button></br>" +
+          "<button id='ansChoice3'>" + thirdAnswer + "</button></br>" +
+          "<button id='ansChoice4'>" + fourthAnswer + "</button></br>"
+          ;
+          $("#choices").html(questionChoices);
+        }
+        else{
+          clockRunning=false;
+          $("#timer").fadeOut();
+          var score = "<h2>" + (correctAnswers).toString() + " out of " + (Object.keys(questAnswers).length.toString()) + " correct </h2>";
+          $("#choices").html("<h1>GAME OVER!</h1>" + score);
   
-        var currentQuestionText = questAnswers[questionNum][currentQuestion];
-
-        var firstAnswer = questAnswers[questionNum][answer1];
-        var secondAnswer = questAnswers[questionNum][answer2];
-        var thirdAnswer = questAnswers[questionNum][answer3];
-        var fourthAnswer = questAnswers[questionNum][answer4];
-
-        var questionChoices =
-        "<text id ='question'>" + currentQuestionText + "</text></br>" + 
-        "<button id='ansChoice1'>" + firstAnswer + "</button></br>" +
-        "<button id='ansChoice2'>" + secondAnswer + "</button></br>" +
-        "<button id='ansChoice3'>" + thirdAnswer + "</button></br>" +
-        "<button id='ansChoice4'>" + fourthAnswer + "</button></br>"
-        ;
-        $("#choices").html(questionChoices);
-
+        }
       }
-   
+      
       function count(){
-        time--;
-        var converted = timeConverter(time);
-        $("#timer").text(converted);
-        if(time == 0){
-          questionNumber ++;
-          resetClock();
-          displayChoices();
+        if(clockRunning == true){
+          time--;
+          var converted = timeConverter(time);
+          $("#timer").text(converted);
+
+          if(time == 0){
+            questionNumber ++;
+            resetClock();
+            displayChoices();
+          }
+
         }
       }
       function timeConverter(t) {
