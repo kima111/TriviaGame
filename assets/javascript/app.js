@@ -31,7 +31,7 @@
             a4:"Thomas Adams"
           },
           question5 : {
-            q1:"What is the capitol of Washington?",
+            q1:"What is the capital of Washington?",
             a1:"Olympia",
             a2:"Honolulu",
             a3:"Seattle",
