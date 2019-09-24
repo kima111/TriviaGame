@@ -17,7 +17,7 @@
             a4:"corn"
           },
           question3 : {
-            q1:"What are my shoes?",
+            q1:"What color are my shoes?",
             a1:"black",
             a2:"red",
             a3:"yellow",
@@ -38,7 +38,7 @@
             a4:"Tacoma"
           },
       };
-      var time = 3;
+      var time = 30;
       var questionNumber = 1;
       var correctAnswers = 0;
       var clockRunning = false;
@@ -87,19 +87,38 @@
 
     });
 
+      function count(){
+        if(clockRunning == true){
+          time--;
+          var converted = timeConverter(time);
+          $("#timer").text(converted);
+
+          if(time == 0){
+            questionNumber ++;
+            resetClock();
+            displayChoices();
+          }
+
+        }
+      }
+
       $("#start").on("click", function() {
+        $("#start").hide();
+        $("#timer").text("00:30");
         if(!clockRunning){
         intervalId = setInterval(count, 1000);
         clockRunning = true;
         }
-        $("#start").fadeOut();
+        
         displayChoices();
         
       });
 
       function resetClock(){
-        time = 3;
+        time = 31;
       }
+
+      
 
       //used to shuffle array
       var shuffle = function (array) {
@@ -150,27 +169,13 @@
         }
         else{
           clockRunning=false;
-          $("#timer").fadeOut();
+          $("#timer").hide();
           var score = "<h2>" + (correctAnswers).toString() + " out of " + (Object.keys(questAnswers).length.toString()) + " correct </h2>";
           $("#choices").html("<h1>GAME OVER!</h1>" + score);
   
         }
       }
-      
-      function count(){
-        if(clockRunning == true){
-          time--;
-          var converted = timeConverter(time);
-          $("#timer").text(converted);
 
-          if(time == 0){
-            questionNumber ++;
-            resetClock();
-            displayChoices();
-          }
-
-        }
-      }
       function timeConverter(t) {
 
         var minutes = Math.floor(t / 60);

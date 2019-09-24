@@ -5,20 +5,29 @@ h2 {
     font-size: 50px;
 }
 button{
-    background-color: #999999;
+    background-color: #dddddd;
     color: black;
     border: none;
-    font-size: 25px;
-    width: 25vw;
+    border-radius: 5px;
+    font-size: 35px;
+    width: 250px;
+    margin: 15px;
 }
   
 button:hover {
     background-color: #555555;
     color: white;
 }
+
 #timer{
     font-size: 50px;
 }
 #question{
     font-size: 50px;
+}
+.container{
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    margin: 25px;
 }
