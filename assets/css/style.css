@@ -29,5 +29,9 @@ button:hover {
     border-style: solid;
     border-width: 2px;
     border-color: black;
-    margin: 25px;
+    margin: 0 auto;
+    margin-top: 25px;
 }
+/* body{
+    margin: 0 auto;
+} */
