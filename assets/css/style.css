@@ -1,12 +1,13 @@
 h1 {
-    font-size: 50px;
+    font-size: 36px;
     font-family: 'Julius Sans One', sans-serif;
     margin: 0 auto;
     margin-top: 50px;
 }
 h2 {
     font-family: 'Julius Sans One', sans-serif;
-    font-size: 50px;
+    font-size: 26px;
+    padding-bottom: 5px;
 }
 button{
     font-family: 'Julius Sans One', sans-serif;
@@ -14,10 +15,10 @@ button{
     color: black;
     border: solid;
     border-width: 1px;
-    border-radius: 5px;
-    font-size: 35px;
-    width: 350px;
-    margin: 5px;
+    border-radius: 2px;
+    font-size: 21px;
+    width: 300px;
+    margin: 2px;
 }
   
 button:hover {
@@ -27,20 +28,21 @@ button:hover {
 
 #timer{
     font-family: 'Julius Sans One', sans-serif;
-    font-size: 32px;
+    font-size: 26px;
 }
 #question{
     font-family: 'Julius Sans One', sans-serif;
-    font-size: 32px;
+    font-size: 21px;
 }
 .main-container{
-    border-style: solid;
+    border-style: none;
     border-width: 1px;
     border-color: black;
     margin: 0 auto;
-    margin-top: 25px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    margin-top: 5px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    max-width: 576px;
 }
 /* body{
     margin: 0 auto;

@@ -24,19 +24,40 @@
             a4:"I'm ready for the apocolypse"
           },
           question4 : {
-            q1:"Who was the first president?",
-            a1:"George Washington",
-            a2:"Michael Jordan",
-            a3:"Abraham Lincoln",
-            a4:"Thomas Adams"
+            q1:"What do you do when you have to get rid of stuff",
+            a1:"Sell then donate",
+            a2:"Garage sell and keep the rest",
+            a3:"Why get rid of stuff?",
+            a4:"Never get rid of just repurpose"
           },
           question5 : {
-            q1:"What is the capital of Washington?",
-            a1:"Olympia",
-            a2:"Honolulu",
-            a3:"Seattle",
-            a4:"Tacoma"
+            q1:"What do you do with plastic bags",
+            a1:"I have my own re-usable bag",
+            a2:"save them",
+            a3:"what paper only!",
+            a4:"recycle them"
           },
+          question6 : {
+            q1:"If you had to choose a number what would it be",
+            a1:"0",
+            a2:"1",
+            a3:"2",
+            a4:"3"
+          },
+          question7 : {
+            q1:"How many books do you have?",
+            a1:"None I use e-books",
+            a2:"more than 10",
+            a3:"a whole book case",
+            a4:"I need another room for the books"
+          },
+          question8 : {
+            q1:"What does minimalism mean",
+            a1:"only keep the stuff you need and enjoy",
+            a2:"get rid of everything",
+            a3:"only keep things you need",
+            a4:"evil"
+          }
       };
       var time = 30;
       var questionNumber = 1;
@@ -46,11 +67,14 @@
       var answer2;
       var answer3;
       var answer4;
+      var questionArrayLength = Object.keys(questAnswers).length + 1;
    
       //event listener is so that it can pick up on the event and not just when the document loads
-
-      document.addEventListener("click", function(){
-      $("#ansChoice1").on("mouseup", function(){
+      document.addEventListener("click", function(event)
+      {
+        event.preventDefault();
+      $("#ansChoice1").on("click", function(event){
+        event.preventDefault();
         if(answer1 == "a1"){
           correctAnswers ++;
         }
@@ -59,7 +83,8 @@
         displayChoices(questionNumber);
       });
  
-      $("#ansChoice2").on("mouseup", function(){
+      $("#ansChoice2").on("click", function(event){
+        event.preventDefault();
         if(answer2 == "a1"){
           correctAnswers ++;
         }
@@ -68,7 +93,8 @@
         displayChoices();
       });
 
-      $("#ansChoice3").on("mouseup", function(){
+      $("#ansChoice3").on("click", function(event){
+        event.preventDefault();
         if(answer3 == "a1"){
           correctAnswers ++;
         }
@@ -77,7 +103,8 @@
         displayChoices();
       });
 
-      $("#ansChoice4").on("mouseup", function(){
+      $("#ansChoice4").on("click", function(event){
+        event.preventDefault();
         if(answer4 == "a1"){
           correctAnswers ++;
         }
@@ -104,13 +131,15 @@
       }
 
       $("#start").on("click", function() {
+        
+        $(".main-container").attr('style','border-style:solid');
         $("#start").hide();
         $("#timer").text("00:30");
         if(!clockRunning){
         intervalId = setInterval(count, 1000);
         clockRunning = true;
         }
-        $("#main-container").attr('border-style','dashed');
+       
         displayChoices();
         
       });
@@ -118,8 +147,6 @@
       function resetClock(){
         time = 31;
       }
-
-      
 
       //used to shuffle array
       var shuffle = function (array) {
@@ -140,8 +167,8 @@
       };
 
       function displayChoices(){
-     
-        if(questionNumber !== (Object.keys(questAnswers).length) + 1){
+  
+        if(questionNumber !== questionArrayLength){
           var ansArray = [1,2,3,4];
           var shuffledAnsArray = shuffle(ansArray);
           var questionNum = "question" + questionNumber;
@@ -172,8 +199,7 @@
           clockRunning=false;
           $("#timer").hide();
           var score = "<h2>" + (correctAnswers).toString() + " out of " + (Object.keys(questAnswers).length.toString()) + " correct </h2>";
-          $("#choices").html("<h1>GAME OVER!</h1>" + score);
-  
+          $("#choices").html(score);
         }
       }
 
