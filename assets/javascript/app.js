@@ -3,25 +3,25 @@
       //a1 is the correct answer
       var questAnswers = {
           question1 : {
-            q1:"What is the color of the sky?",
-            a1:"blue",
-            a2:"red",
-            a3:"green",
-            a4:"apple"
+            q1:"How many cups do you have?",
+            a1:"Only 1",
+            a2:"less than 10",
+            a3:"less than 20",
+            a4:"I lost count"
           },
           question2 : {
-            q1:"What color is grass?",
-            a1:"green",
-            a2:"black",
-            a3:"white",
-            a4:"corn"
+            q1:"How many apps do you have?",
+            a1:"I don't have a smart phone",
+            a2:"less than 20",
+            a3:"my phone is constantly out of memory",
+            a4:"less than 5"
           },
           question3 : {
-            q1:"What color are my shoes?",
-            a1:"black",
-            a2:"red",
-            a3:"yellow",
-            a4:"grapes"
+            q1:"How long will your grocery run last?",
+            a1:"2-3 days",
+            a2:"1 week",
+            a3:"1 month",
+            a4:"I'm ready for the apocolypse"
           },
           question4 : {
             q1:"Who was the first president?",
@@ -46,6 +46,7 @@
       var answer2;
       var answer3;
       var answer4;
+   
       //event listener is so that it can pick up on the event and not just when the document loads
 
       document.addEventListener("click", function(){
@@ -109,7 +110,7 @@
         intervalId = setInterval(count, 1000);
         clockRunning = true;
         }
-        
+        $("#main-container").attr('border-style','dashed');
         displayChoices();
         
       });
@@ -192,5 +193,5 @@
         }
         return minutes + ":" + seconds;
       }
-      (function(l){var i,s={touchend:function(){}};for(i in s)l.addEventListener(i,s)})(document); // sticky hover fix in iOS
+  
     });
