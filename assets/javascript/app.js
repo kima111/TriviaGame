@@ -49,7 +49,7 @@
       //event listener is so that it can pick up on the event and not just when the document loads
 
       document.addEventListener("click", function(){
-      $("#ansChoice1").on("click", function(){
+      $("#ansChoice1").on("mouseup", function(){
         if(answer1 == "a1"){
           correctAnswers ++;
         }
@@ -58,7 +58,7 @@
         displayChoices(questionNumber);
       });
  
-      $("#ansChoice2").on("click", function(){
+      $("#ansChoice2").on("mouseup", function(){
         if(answer2 == "a1"){
           correctAnswers ++;
         }
@@ -67,7 +67,7 @@
         displayChoices();
       });
 
-      $("#ansChoice3").on("click", function(){
+      $("#ansChoice3").on("mouseup", function(){
         if(answer3 == "a1"){
           correctAnswers ++;
         }
@@ -76,7 +76,7 @@
         displayChoices();
       });
 
-      $("#ansChoice4").on("click", function(){
+      $("#ansChoice4").on("mouseup", function(){
         if(answer4 == "a1"){
           correctAnswers ++;
         }
