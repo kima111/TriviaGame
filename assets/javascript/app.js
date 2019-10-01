@@ -75,6 +75,8 @@
       // {
         // event.preventDefault();
       $(document).on("click", "#ansChoice1", function(event){
+
+        
         event.preventDefault();
         if(answer1 == "a1"){
           displayRightScreen();
@@ -86,6 +88,7 @@
       });
  
       $(document).on("click", "#ansChoice2", function(event){
+        
         event.preventDefault();
         if(answer2 == "a1"){
           displayRightScreen();
@@ -97,6 +100,7 @@
       });
 
       $(document).on("click", "#ansChoice3", function(event){
+        
         event.preventDefault();
         if(answer3 == "a1"){
           displayRightScreen();
@@ -108,6 +112,7 @@
       });
 
       $(document).on("click", "#ansChoice4", function(event){
+        
         event.preventDefault();
         if(answer4 == "a1"){
           displayRightScreen();
@@ -239,10 +244,10 @@
 
           var questionChoices =
           "<text id ='question'>" + currentQuestionText + "</text></br>" + 
-          "<button id='ansChoice1'>" + firstAnswer + "</button></br>" +
-          "<button id='ansChoice2'>" + secondAnswer + "</button></br>" +
-          "<button id='ansChoice3'>" + thirdAnswer + "</button></br>" +
-          "<button id='ansChoice4'>" + fourthAnswer + "</button></br>"
+          "<button id='ansChoice1' ontouchend = 'this.onclick=fix'>" + firstAnswer + "</button></br>" +
+          "<button id='ansChoice2' ontouchend = 'this.onclick=fix'>" + secondAnswer + "</button></br>" +
+          "<button id='ansChoice3' ontouchend = 'this.onclick=fix'>" + thirdAnswer + "</button></br>" +
+          "<button id='ansChoice4' ontouchend = 'this.onclick=fix'>" + fourthAnswer + "</button></br>"
           ;
           $("#choices").html(questionChoices);
         }
@@ -296,5 +301,12 @@
         }
         return minutes + ":" + seconds;
       }
-  
+      function fix()
+{
+    var el = this;
+    var par = el.parentNode;
+    var next = el.nextSibling;
+    par.removeChild(el);
+    setTimeout(function() {par.insertBefore(el, next);}, 0)
+}
     });
