@@ -71,10 +71,10 @@
       $("#startAgain").hide();
    
       //event listener is so that it can pick up on the event and not just when the document loads
-      document.addEventListener("click", function(event)
-      {
-        event.preventDefault();
-      $("#ansChoice1").on("click", function(event){
+      // document.addEventListener("click", function(event)
+      // {
+        // event.preventDefault();
+      $(document).on("click", "#ansChoice1", function(event){
         event.preventDefault();
         if(answer1 == "a1"){
           displayRightScreen();
@@ -85,7 +85,7 @@
         }
       });
  
-      $("#ansChoice2").on("click", function(event){
+      $(document).on("click", "#ansChoice2", function(event){
         event.preventDefault();
         if(answer2 == "a1"){
           displayRightScreen();
@@ -96,7 +96,7 @@
         }
       });
 
-      $("#ansChoice3").on("click", function(event){
+      $(document).on("click", "#ansChoice3", function(event){
         event.preventDefault();
         if(answer3 == "a1"){
           displayRightScreen();
@@ -107,7 +107,7 @@
         }
       });
 
-      $("#ansChoice4").on("click", function(event){
+      $(document).on("click", "#ansChoice4", function(event){
         event.preventDefault();
         if(answer4 == "a1"){
           displayRightScreen();
@@ -118,7 +118,7 @@
         }
       });
 
-    });
+    // });
 
       function count(){
         if(clockRunning == true){
