@@ -244,10 +244,10 @@
 
           var questionChoices =
           "<text id ='question'>" + currentQuestionText + "</text></br>" + 
-          "<button id='ansChoice1' ontouchend = 'this.onclick=fix'>" + firstAnswer + "</button></br>" +
-          "<button id='ansChoice2' ontouchend = 'this.onclick=fix'>" + secondAnswer + "</button></br>" +
-          "<button id='ansChoice3' ontouchend = 'this.onclick=fix'>" + thirdAnswer + "</button></br>" +
-          "<button id='ansChoice4' ontouchend = 'this.onclick=fix'>" + fourthAnswer + "</button></br>"
+          "<button id='ansChoice1'>" + firstAnswer + "</button></br>" +
+          "<button id='ansChoice2'>" + secondAnswer + "</button></br>" +
+          "<button id='ansChoice3'>" + thirdAnswer + "</button></br>" +
+          "<button id='ansChoice4'>" + fourthAnswer + "</button></br>"
           ;
           $("#choices").html(questionChoices);
         }
@@ -301,12 +301,5 @@
         }
         return minutes + ":" + seconds;
       }
-      function fix()
-{
-    var el = this;
-    var par = el.parentNode;
-    var next = el.nextSibling;
-    par.removeChild(el);
-    setTimeout(function() {par.insertBefore(el, next);}, 0)
-}
+     
     });
